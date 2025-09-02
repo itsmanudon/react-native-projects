@@ -1,15 +1,21 @@
 import { useState } from 'react';
 import { 
-  StyleSheet, 
-  View, 
-  FlatList
+    StyleSheet,
+    View,
+    FlatList,
+    Button,
 } from 'react-native';
 
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
 export default function App() {
+    const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
+
+  function startAddGoalHandler() {
+      setModalIsVisible(true);
+  }
 
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
@@ -28,7 +34,12 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} />
+        <Button
+            title="Add New Goal"
+            color="#5e0acc"
+            onPress={() => startAddGoalHandler()}
+        />
+        {modalIsVisible && <GoalInput onAddGoal={addGoalHandler} /> }
       {/* ScrollView allows for scrolling when the content exceeds the screen size. We wrapped it
       with a View because styling ScrollView directly can be problematic. The View container gives
       us more control over the layout and styling of the scrollable content. */}
