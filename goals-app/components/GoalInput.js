@@ -26,7 +26,7 @@ function GoalInput(props) {
   return (
       <Modal visible={props.visible} animation="slide">
         <View style={styles.inputContainer}>
-            <Image source={require('../assets/images/goal.png')} />
+            <Image style={styles.image} source={require('../assets/images/goal.png')} />
             <TextInput
                 style={styles.textInput}
                 value={enteredGoalText}
@@ -35,10 +35,10 @@ function GoalInput(props) {
             />
             <View style={styles.buttonContainer}>
                 <View style={styles.button}>
-                    <Button title="Add Goal" onPress={addGoalHandler} />
+                    <Button title="Add Goal" onPress={addGoalHandler} color="#5e0acc"/>
                 </View>
                 <View style={styles.button}>
-                    <Button title="Cancel" onPress={props.onCancel} />
+                    <Button title="Cancel" onPress={props.onCancel} color="#f31282"/>
                 </View>
             </View>
         </View>
@@ -52,13 +52,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
-        marginBottom: 24,
-        borderBottomWidth: 1,
-        borderBottomColor: '#cccccc',
+        backgroundColor: '#311b6b',
+    },
+    image: {
+        width: 100,
+        height: 100,
+        margin: 20,
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#cccccc',
+        borderColor: '#e4d0ff',
+        backgroundColor: '#e4d0ff',
+        borderRadius: 6,
+        color: '#120438',
         width: '100%',
         padding: 8,
     },

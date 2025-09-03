@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { 
+import {
     StyleSheet,
     View,
     FlatList,
     Button,
+    Text,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
@@ -38,10 +40,12 @@ export default function App() {
     }
 
     return (
+        <>
+        <StatusBar style="light"/>
     <View style={styles.appContainer}>
         <Button
             title="Add New Goal"
-            color="#5e0acc"
+            color="#ae065c"
             onPress={() => startAddGoalHandler()}
         />
         <GoalInput
@@ -86,7 +90,11 @@ export default function App() {
           }}
           />
       </View>
+        <View style={styles.deleteContainer}>
+            <Text style={styles.goalText}>Click to Delete</Text>
+        </View>
     </View>
+        </>
     );
 }
 
@@ -95,7 +103,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+      backgroundColor: "#1e085a",
   },
+    deleteContainer: {
+      flex: 1,
+      paddingTop: 10,
+      paddingHorizontal: 16,
+      alignItems: 'center',
+    },
 
   // Setting the flex ratio between the input container and the goals container 1:5
   goalsContainer: {

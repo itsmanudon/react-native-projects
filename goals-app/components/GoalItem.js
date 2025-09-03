@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
     },
     goalText: {
         color: 'white',
+        paddingLeft: '3%',
     },
 });
