@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -69,18 +73,25 @@ function GameScreen({ userNumber, onGameOver }) {
         <View style={styles.screen}>
             <Title>Opponent's Guess</Title>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <View>
-                <Text>Higher or Lower?</Text>
-                <View>
+            <Card>
+                <InstructionText style={styles.instructionText}>Higher or Lower?</InstructionText>
+                <View style={styles.buttonsContainer}>
                     {/*The bind allows use to pre-configure the function with an argument
                     so that when the button is pressed, it calls nextGuessHandler with 'lower' or 'greater'
                     We could also use an arrow function like onPress={() => nextGuessHandler('lower')}
                     but bind is more efficient in this case because it doesn't create a new function on each render.*/}
-
-                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                            <Ionicons name="md-remove" size={24} color="white" />
+                        </PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                            <Ionicons name="md-add" size={24} color="white" />
+                        </PrimaryButton>
+                    </View>
                 </View>
-            </View>
+            </Card>
         </View>
     );
 }
@@ -92,5 +103,13 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 24,
     },
-
+    instructionText: {
+        marginBottom: 12,
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+    },
+    buttonContainer: {
+        flex: 1,
+    },
 });
